@@ -1,1 +1,16 @@
-
+spring:
+  mail:
+    host: smtp.gmail.com
+    port: 587
+    username: vaniagatman@gmail.com
+    password: sffakyrofiixmbut
+    protocol: smtp
+    properties.mail.smtp:
+      auth: true
+      starttls.enable: true
+      ssl.trust: smtp.gmail.com
+      imap:
+        auth: true
+        ssl.enable: true
+        host: imap.gmail.com
+        port: 993

@@ -1,2 +1,8 @@
-package com.mail.demo.configuration;public class MailConfig {
+package com.mail.demo.configuration;
+
+import org.springframework.context.annotation.Configuration;
+
+@Configuration
+public class MailConfig {
+
 }
