@@ -1,10 +1,14 @@
 package com.mail.demo.service;
 
 
+import com.mail.demo.dto.MailFormDTO;
 import jakarta.mail.*;
 import jakarta.mail.internet.InternetAddress;
 import jakarta.mail.search.FlagTerm;
+import org.slf4j.Logger;
+import org.slf4j.LoggerFactory;
 import org.springframework.beans.factory.annotation.Autowired;
+import org.springframework.mail.SimpleMailMessage;
 import org.springframework.mail.javamail.JavaMailSender;
 import org.springframework.stereotype.Service;
 
@@ -15,6 +19,8 @@ public class EmailService {
 
     @Autowired
     private JavaMailSender javaMailSender;
+
+    Logger logger = LoggerFactory.getLogger(EmailService.class);
 
     public void readEmails() throws Exception {
 
@@ -48,6 +54,21 @@ public class EmailService {
         store.close();
     }
 
+    public void sendEmail(MailFormDTO destination) {
+        logger.debug(destination.sentTo());
+        logger.debug(destination.subject());
+        logger.debug(destination.text());
+
+        SimpleMailMessage message = new SimpleMailMessage();
+        message.setFrom("vaniagatman@gmail.com");
+        message.setTo(destination.sentTo());
+        message.setSubject(destination.subject());
+        message.setText(destination.text());
+        javaMailSender.send(message);
+
+        logger.debug("Mail message sent: " + message);
     }
+
+}
 
 
